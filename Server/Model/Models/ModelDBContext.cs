@@ -5,10 +5,10 @@ namespace Model.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class Model : DbContext
+    public partial class ModelDBContext : DbContext
     {
-        public Model()
-            : base("name=Model")
+        public ModelDBContext()
+            : base("name=ModelDBContext")
         {
         }
 
@@ -76,5 +76,7 @@ namespace Model.Models
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
         }
+
+       
     }
 }

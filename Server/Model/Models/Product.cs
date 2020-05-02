@@ -32,13 +32,13 @@ namespace Model.Models
 
         public decimal? Price { get; set; }
 
-        public bool? IncludeVAT { get; set; }
+        public bool IncludeVAT { get; set; }
 
         public int? Quantity { get; set; }
 
         public DateTime? CreateDate { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
         public int SupplierID { get; set; }
 
