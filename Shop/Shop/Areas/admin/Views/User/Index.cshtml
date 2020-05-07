@@ -1,0 +1,93 @@
+﻿@model PagedList.IPagedList<Models.Model.User>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+@section jsFooter{
+    <script src="~/assets/admin/js/User.js"></script>
+}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <h1 class="mt-4">Danh sách tài khoản</h1>
+            <div class="card mb-4">
+
+                <div class="card-body">
+                    @using (Html.BeginForm("Index", "User", FormMethod.Get))
+                    {
+                        <div class="row ">
+                            <div class="col-md-8">
+                                <input type="text" value="@ViewBag.SearchString" name="searchString" size="90" />
+                            </div>
+                            <hr>
+
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-success">Tìm kiếm</button>
+                                <a href="/Product/Create" class="btn btn-primary">Thêm mới</a>
+                            </div>
+                        </div>
+                    }
+                    <hr />
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered" cellspacing="0">
+                            <thead>
+                                <tr>
+
+                                    <th>Tài khoản</th>
+                                    <th>Mật khẩu</th>
+                                    <th>Email</th>
+                                    <th>Quyền</th>
+                                    <th>Status</th>
+                                    <th>#</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr id="row_@item.ID">
+
+                                        <td>@item.UserName</td>
+                                        <td>@item.Password</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.Role</td>
+                                        <td><a href="#" class=" btn-active" data-id="@item.ID">@(item.Status ? "Kích hoạt" : "Khóa")</a></td>
+                                        <td>
+                                            <a href="/admin/User/Edit/@item.ID">Sửa</a>
+                                            @Ajax.ActionLink("Xóa", "Delete",new {@id=item.ID }, new AjaxOptions
+                                       {
+                                           Confirm = "Bản có muốn xóa bản ghi này ?",
+                                           OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                           HttpMethod = "Delete"
+                                       })
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Your Website 2019</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    &middot;
+                    <a href="#">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
