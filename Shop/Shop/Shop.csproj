@@ -171,10 +171,12 @@
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -194,20 +196,69 @@
     <Content Include="assets\client\css\style.css" />
     <Content Include="assets\client\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\client\fonts\slick.svg" />
-    <Content Include="assets\client\img\hotdeal.png" />
-    <Content Include="assets\client\img\logo.png" />
-    <Content Include="assets\client\img\product01.png" />
-    <Content Include="assets\client\img\product02.png" />
-    <Content Include="assets\client\img\product03.png" />
-    <Content Include="assets\client\img\product04.png" />
-    <Content Include="assets\client\img\product05.png" />
-    <Content Include="assets\client\img\product06.png" />
-    <Content Include="assets\client\img\product07.png" />
-    <Content Include="assets\client\img\product08.png" />
-    <Content Include="assets\client\img\product09.png" />
-    <Content Include="assets\client\img\shop01.png" />
-    <Content Include="assets\client\img\shop02.png" />
-    <Content Include="assets\client\img\shop03.png" />
+    <Content Include="assets\client\images\Laptop\A00001.jpg" />
+    <Content Include="assets\client\images\Laptop\A00002.jpg" />
+    <Content Include="assets\client\images\Laptop\A00003.jpg" />
+    <Content Include="assets\client\images\Laptop\A00004.jpg" />
+    <Content Include="assets\client\images\Laptop\AS00001.jpg" />
+    <Content Include="assets\client\images\Laptop\AS00002.jpg" />
+    <Content Include="assets\client\images\Laptop\AS00003.jpg" />
+    <Content Include="assets\client\images\Laptop\AS00004.jpg" />
+    <Content Include="assets\client\images\Laptop\AS00005.jpg" />
+    <Content Include="assets\client\images\Laptop\AS00006.jpg" />
+    <Content Include="assets\client\images\Laptop\D00001.jpg" />
+    <Content Include="assets\client\images\Laptop\D00002.jpg" />
+    <Content Include="assets\client\images\Laptop\D00003.jpg" />
+    <Content Include="assets\client\images\Laptop\D00004.jpg" />
+    <Content Include="assets\client\images\Laptop\D00005.jpg" />
+    <Content Include="assets\client\images\Laptop\D00006.jpg" />
+    <Content Include="assets\client\images\Laptop\H00001.jpg" />
+    <Content Include="assets\client\images\Laptop\H00002.jpg" />
+    <Content Include="assets\client\images\Laptop\H00003.jpg" />
+    <Content Include="assets\client\images\Laptop\H00004.jpg" />
+    <Content Include="assets\client\images\Laptop\H00005.jpg" />
+    <Content Include="assets\client\images\Laptop\H00006.jpg" />
+    <Content Include="assets\client\images\Laptop\H00007.jpg" />
+    <Content Include="assets\client\images\Smartphone\AP00001.png" />
+    <Content Include="assets\client\images\Smartphone\AP00002.png" />
+    <Content Include="assets\client\images\Smartphone\AP00003.png" />
+    <Content Include="assets\client\images\Smartphone\AP00004.png" />
+    <Content Include="assets\client\images\Smartphone\AP00005.png" />
+    <Content Include="assets\client\images\Smartphone\AP00006.png" />
+    <Content Include="assets\client\images\Smartphone\AP00007.png" />
+    <Content Include="assets\client\images\Smartphone\Mi00001.png" />
+    <Content Include="assets\client\images\Smartphone\Mi00002.png" />
+    <Content Include="assets\client\images\Smartphone\Mi00003.png" />
+    <Content Include="assets\client\images\Smartphone\Mi00004.png" />
+    <Content Include="assets\client\images\Smartphone\Mi00005.png" />
+    <Content Include="assets\client\images\Smartphone\O00001.png" />
+    <Content Include="assets\client\images\Smartphone\O00002.png" />
+    <Content Include="assets\client\images\Smartphone\O00003.png" />
+    <Content Include="assets\client\images\Smartphone\O00004.png" />
+    <Content Include="assets\client\images\Smartphone\O00005.png" />
+    <Content Include="assets\client\images\Smartphone\O00006.png" />
+    <Content Include="assets\client\images\Smartphone\S00001.png" />
+    <Content Include="assets\client\images\Smartphone\S00002.png" />
+    <Content Include="assets\client\images\Smartphone\S00003.png" />
+    <Content Include="assets\client\images\Smartphone\S00004.png" />
+    <Content Include="assets\client\images\Smartphone\S00005.png" />
+    <Content Include="assets\client\images\Smartphone\S00006.png" />
+    <Content Include="assets\client\images\Smartphone\S00007.png" />
+    <Content Include="assets\client\images\Smartphone\S00008.png" />
+    <Content Include="assets\client\images\Smartphone\S00009.png" />
+    <Content Include="assets\client\images\Smartphone\S00010.png" />
+    <Content Include="assets\client\images\Watch\AW00001.png" />
+    <Content Include="assets\client\images\Watch\AW00002.png" />
+    <Content Include="assets\client\images\Watch\AW00003.jpg" />
+    <Content Include="assets\client\images\Watch\AW00004.jpg" />
+    <Content Include="assets\client\images\Watch\AW00005.jpg" />
+    <Content Include="assets\client\images\Watch\MiB00001.jpg" />
+    <Content Include="assets\client\images\Watch\SW00001.jpg" />
+    <Content Include="assets\client\images\Watch\SW00002.jpg" />
+    <Content Include="assets\client\images\Watch\SW00003.jpg" />
+    <Content Include="assets\client\images\Watch\SW00004.jpg" />
+    <Content Include="assets\client\images\Watch\SW00005.jpg" />
+    <Content Include="assets\client\images\Watch\SW00006.jpg" />
     <Content Include="assets\client\js\bootstrap.min.js" />
     <Content Include="assets\client\js\jquery.min.js" />
     <Content Include="assets\client\js\jquery.zoom.min.js" />
@@ -248,7 +299,7 @@
     <Content Include="assets\client\fonts\slick.eot" />
     <Content Include="assets\client\fonts\slick.ttf" />
     <Content Include="assets\client\fonts\slick.woff" />
-    <Content Include="assets\client\img\Thumbs.db" />
+    <Content Include="assets\client\images\Watch\Thumbs.db" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -270,7 +321,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\_mydefaultview.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
@@ -282,11 +333,24 @@
     <Content Include="Views\Product\ProductCategory.cshtml" />
     <Content Include="Views\Product\Category.cshtml" />
     <Content Include="Views\Product\ProductSupplier.cshtml" />
+    <Content Include="Views\Home\ListCate.cshtml" />
+    <Content Include="Views\Home\TopSellingLaptop.cshtml" />
+    <Content Include="Views\Home\TopSellingSmartPhone.cshtml" />
+    <Content Include="Views\Home\TopSellingWatch.cshtml" />
+    <Content Include="Views\Home\ListNewProduct.cshtml" />
+    <Content Include="Views\Home\ListTopSelling.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
+    <Content Include="Views\Product\RelatedProduct.cshtml" />
+    <Content Include="Views\Product\TopSelling.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\admin\Models\" />
     <Folder Include="Areas\admin\Views\Base\" />
+    <Folder Include="assets\client\images\Accessories\" />
+    <Folder Include="assets\client\images\Camera\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -25,11 +25,12 @@ namespace Shop
             );
             routes.MapRoute(
                 name: "Product Detail",
-                url: "chi-tiet/{Name}-{id}",
+                url: "chi-tiet/{Code}-{id}",
                 defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },
                 namespaces: new[] { "Shop.Controllers" }
 
             );
+            
             routes.MapRoute(
                 name: "trang-chu",
                 url: "{controller}/{action}/{id}",

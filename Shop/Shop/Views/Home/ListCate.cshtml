@@ -1,0 +1,12 @@
+﻿@model List<Models.ViewModel.CategoryViewModel>
+<div class="section-nav">
+    <ul class="section-tab-nav tab-nav">
+        @foreach (var item in Model)
+        {
+            <li>
+                <a data-toggle="tab" href="/san-pham/@item.Name-@item.ID">@item.Name</a>
+            </li>
+
+        }
+    </ul>
+    </div>

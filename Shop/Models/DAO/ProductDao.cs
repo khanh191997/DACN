@@ -77,9 +77,9 @@ namespace Models.DAO
         {
             return db.Products.SingleOrDefault(x => x.ID == id);
         }
-        public Product ViewDetail(int id)
+        public Product ViewDetail(long id)
         {
-            return db.Products.Find(id);
+            return db.Products.Where(x => x.ID == id).FirstOrDefault() ;
         }
         public bool Delete(int id)
         {
@@ -137,14 +137,13 @@ namespace Models.DAO
         {
             return db.Categories.Find(id);
         }
-        public List<ProductViewModel> ListNewProduct(int categoryID)
+        public List<ProductViewModel> ListNewProduct()
         {
             var models = from p in db.Products
                          join s in db.Suppliers
                          on p.SupplierID equals s.ID
                          join c in db.Categories
                          on p.CategoryID equals c.ID
-                         where p.CategoryID == categoryID
                          select new ProductViewModel
                          {
                              ID = p.ID,
@@ -160,7 +159,7 @@ namespace Models.DAO
                              CateName = c.Name
 
                          };
-            return models.OrderByDescending(x => x.CreateDate).Take(4).ToList();
+            return models.OrderByDescending(x=>x.CreateDate).Take(4).ToList();
         }
         public List<ProductViewModel> ListByCategoryID(int cateId, ref int totalRecord, int pageIndex = 1, int pageSize = 6)
         {
@@ -188,14 +187,110 @@ namespace Models.DAO
                          };
             return models.OrderByDescending(x => x.CreateDate).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
         }
-        public List<Product> ListTopSelling(int categoryID)
+        public List<ProductViewModel> ListTopSelling()
         {
-            var models = (from item in db.OrderDetails
-                          group item.Quantity by item.Product into g
-                          orderby g.Sum() descending
-                          select g.Key
-                          ).Take(4);
-            return models.ToList();
+            var models = from p in db.Products
+                         join s in db.Suppliers
+                         on p.SupplierID equals s.ID
+                         join c in db.Categories
+                         on p.CategoryID equals c.ID
+                         where p.CategoryID == 1
+                         
+                         select new ProductViewModel
+                         {
+                             ID = p.ID,
+                             Name = p.Name,
+                             Code = p.Code,
+                             Descriptions = p.Descriptions,
+                             Image = p.Image,
+                             Price = p.Price,
+                             Quantity = p.Quantity,
+                             CreateDate = p.CreateDate,
+                             Status = p.Status,
+                             SupplierName = s.Name,
+                             CateName = c.Name
+
+                         };
+
+            return models.OrderByDescending(x=>x.Quantity).Take(4).ToList();
+        }
+        public List<ProductViewModel> ListTopSellingLaptop()
+        {
+            var models =  from p in db.Products
+                          join s in db.Suppliers
+                          on p.SupplierID equals s.ID
+                          join c in db.Categories
+                          on p.CategoryID equals c.ID
+                          where p.CategoryID==1                      
+                          select new ProductViewModel
+                          {
+                              ID = p.ID,
+                              Name = p.Name,
+                              Code = p.Code,
+                              Descriptions = p.Descriptions,
+                              Image = p.Image,
+                              Price = p.Price,
+                              Quantity = p.Quantity,
+                              CreateDate = p.CreateDate,
+                              Status = p.Status,
+                              SupplierName = s.Name,
+                              CateName = c.Name
+
+                          };
+
+            return models.Take(4).ToList();
+        }
+        public List<ProductViewModel> ListTopSellingSmartphone()
+        {
+            var models = from p in db.Products
+                         join s in db.Suppliers
+                         on p.SupplierID equals s.ID
+                         join c in db.Categories
+                         on p.CategoryID equals c.ID
+                         where p.CategoryID == 2
+                         select new ProductViewModel
+                         {
+                             ID = p.ID,
+                             Name = p.Name,
+                             Code = p.Code,
+                             Descriptions = p.Descriptions,
+                             Image = p.Image,
+                             Price = p.Price,
+                             Quantity = p.Quantity,
+                             CreateDate = p.CreateDate,
+                             Status = p.Status,
+                             SupplierName = s.Name,
+                             CateName = c.Name
+
+                         };
+
+            return models.Take(4).ToList();
+        }
+        public List<ProductViewModel> ListTopSellingWatch()
+        {
+            var models = from p in db.Products
+                         join s in db.Suppliers
+                         on p.SupplierID equals s.ID
+                         join c in db.Categories
+                         on p.CategoryID equals c.ID
+                         where p.CategoryID == 3
+                         select new ProductViewModel
+                         {
+                             ID = p.ID,
+                             Name = p.Name,
+                             Code = p.Code,
+                             Descriptions = p.Descriptions,
+                             Image = p.Image,
+                             Price = p.Price,
+                             Quantity = p.Quantity,
+                             CreateDate = p.CreateDate,
+                             Status = p.Status,
+                             SupplierName = s.Name,
+                             CateName = c.Name
+
+                         };
+
+            return models.Take(4).ToList();
         }
     }
 }

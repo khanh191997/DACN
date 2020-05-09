@@ -18,10 +18,15 @@ namespace Models.DAO
         }
         public long Insert(User entity)
         {
-
-            db.Users.Add(entity);
-            db.SaveChanges();
-            return entity.ID;
+            try {
+                db.Users.Add(entity);
+                db.SaveChanges();
+                return entity.ID;
+            }catch(Exception e)
+            {
+                throw e;
+            }
+            
 
         }
         public bool Update(User entity)

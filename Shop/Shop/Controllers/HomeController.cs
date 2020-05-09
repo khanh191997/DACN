@@ -40,5 +40,35 @@ namespace Shop.Controllers
         {
             return PartialView();
         }
+        public ActionResult ListCate()
+        {
+            var model = new ProductDao().GetAllCate();
+            return PartialView(model);
+        }
+        public ActionResult TopSellingLaptop()
+        {
+            var model = new ProductDao().ListTopSellingLaptop();
+            return PartialView(model);
+        }
+        public ActionResult TopSellingSmartPhone()
+        {
+            var model = new ProductDao().ListTopSellingSmartphone();
+            return PartialView(model);
+        }
+        public ActionResult TopSellingWatch()
+        {
+            var model = new ProductDao().ListTopSellingWatch();
+            return PartialView(model);
+        }
+        public ActionResult ListNewProduct()
+        {
+            var model = new ProductDao().ListNewProduct();
+            return PartialView(model);
+        }
+        public ActionResult ListTopSelling()
+        {
+            var model = new ProductDao().ListTopSelling();
+            return PartialView(model);
+        }
     }
 }

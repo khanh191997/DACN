@@ -1,0 +1,18 @@
+﻿@model List<Models.ViewModel.ProductViewModel>
+<div class="aside">
+    <h3 class="aside-title">Sản phẩm bán chạy</h3>
+    @foreach (var item in Model)
+    {
+        var link = "/chi-tiet/" + item.Code + "-" + item.ID;
+        <div class="product-widget">
+            <div class="product-img">
+                <a href="@link"><img src="@item.Image" alt="" width="50px" height="50px"></a>
+            </div>
+            <div class="product-body">
+                <p class="product-category">@item.CateName</p>
+                <h3 class="product-name"><a href="@link">@item.Name</a></h3>
+                <h4 class="product-price">@item.Price</h4>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,33 @@
+﻿@model List<Models.ViewModel.ProductViewModel>
+<div class="col-md-4 col-xs-6">
+    <div class="section-title">
+        <h4 class="title">Top đồng hồ bán chạy nhất</h4>
+        <div class="section-nav">
+            <div id="slick-nav-3" class="products-slick-nav"></div>
+        </div>
+    </div>
+
+    <div class="products-widget-slick" data-nav="#slick-nav-3">
+        <div>
+            <!-- product widget -->
+            @foreach (var item in Model)
+            {
+                var link = "/chi-tiet/" + item.Code + "-" + item.ID;
+                <div class="product-widget">
+                    <div class="product-img">
+                        <a href="@link"><img src="@item.Image" alt="" width="50px" height="50px"></a>
+                    </div>
+                    <div class="product-body">
+                        <p class="product-category">@item.CateName</p>
+                        <h3 class="product-name"><a href="@link">@item.Name</a></h3>
+                        <h4 class="product-price">@item.Price </h4>
+                    </div>
+                </div>
+            }
+
+
+            <!-- product widget -->
+        </div>
+    </div>
+</div>
+

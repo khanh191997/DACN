@@ -38,7 +38,7 @@ namespace Models.Model
 
         public bool Status { get; set; }
 
-        [Required]
+        
         [StringLength(50)]
         public string Role { get; set; }
 

@@ -26,7 +26,7 @@ namespace Models.Model
 
         public string Descriptions { get; set; }
 
-        [StringLength(50)]
+        [StringLength(100)]
         public string Image { get; set; }
 
         public decimal? Price { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Models.DAO;
+using Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,11 @@ namespace Shop.Controllers
             var model = new ProductDao().GetAllSup();
             return PartialView(model);
         }
+        public ActionResult TopSelling()
+        {
+            var model = new ProductDao().ListTopSelling();
+            return PartialView(model);
+        }
 
         public ActionResult Category(int cateID, int page = 1, int pageSize = 6)
         {
@@ -46,6 +52,31 @@ namespace Shop.Controllers
             ViewBag.Next = page + 1;
             ViewBag.Prev = page - 1;
             return View(model);
+        }
+        public ActionResult Detail(int id)
+        {
+           
+            var product = new ProductDao().ViewDetail(id);
+            ProductViewModel model = new ProductViewModel()
+            {
+                Name=product.Name,
+                Code = product.Code,
+                Descriptions = product.Descriptions,
+                Image = product.Image,
+                Price = product.Price,
+                Quantity = product.Quantity,
+                CreateDate = product.CreateDate,
+                Status = product.Status 
+            };
+            var category = new ProductDao().CateViewDetail(product.CategoryID);
+            ViewBag.Category = category;
+            return View(model);
+
+        }
+        public ActionResult RelatedProduct()
+        {
+            var model = new ProductDao().ListNewProduct();
+            return PartialView(model);
         }
     }
 }
