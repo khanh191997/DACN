@@ -77,7 +77,7 @@ namespace Models.DAO
         {
             return db.Products.SingleOrDefault(x => x.ID == id);
         }
-        public Product ViewDetail(long id)
+        public Product ViewDetail(int id)
         {
             return db.Products.Where(x => x.ID == id).FirstOrDefault() ;
         }

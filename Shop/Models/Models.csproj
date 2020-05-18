@@ -57,6 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\CommonConstants.cs" />
+    <Compile Include="DAO\CartDao.cs" />
+    <Compile Include="DAO\OrderDao.cs" />
+    <Compile Include="DAO\OrderDetailDao.cs" />
     <Compile Include="DAO\ProductDao.cs" />
     <Compile Include="DAO\UserDao.cs" />
     <Compile Include="Model\Cart.cs" />
@@ -70,6 +73,7 @@
     <Compile Include="Model\sysdiagram.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\CartViewModel.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewModel\ProductFilter.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
