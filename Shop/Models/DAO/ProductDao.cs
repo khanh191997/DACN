@@ -41,7 +41,7 @@ namespace Models.DAO
                                                   };
             if (!string.IsNullOrEmpty(searchString))
             {
-                models = models.Where(x => x.Name.Contains(searchString) || x.Name.Contains(searchString));
+                models = models.Where(x => x.Name.Contains(searchString) || x.Code.Contains(searchString));
             }
             return models.OrderByDescending(x => x.CreateDate).ToPagedList(page, pageSize);
         }
@@ -121,12 +121,57 @@ namespace Models.DAO
             var model = from c in db.Categories
                         select new CategoryViewModel
                         {
-                            ID = c.ID,
+                            CategoryID = c.ID,
                             Name = c.Name,
                             Descriptions = c.Descriptions
                         };
+
             return model.ToList();
 
+        }
+        public List<Category> GetListCate(string searchString)
+        {
+            var model = db.Categories.ToList();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x =>x.Name.Contains(searchString)).ToList();
+            }
+            return model;
+        }
+        public long InsertCate(Category cate)
+        {
+
+            db.Categories.Add(cate);
+            db.SaveChanges();
+            return cate.ID;
+
+        }
+        public bool UpdateCate(Category cate)
+        {
+            try
+            {
+                var cates = db.Categories.Find(cate.ID);
+                cates.Name = cate.Name;
+                cate.Descriptions = cate.Descriptions;
+                db.SaveChanges();
+                return true;
+
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool DeleteCate(int id)
+        {
+            try
+            {
+                var cate = db.Categories.Find(id);
+                db.Categories.Remove(cate);
+                db.SaveChanges();
+                return true;
+            }
+            catch { return false; }
         }
         public List<Supplier> GetAllSup()
         {

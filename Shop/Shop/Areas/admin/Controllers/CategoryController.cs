@@ -1,6 +1,5 @@
 ﻿using Models.DAO;
 using Models.Model;
-using Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,39 +8,32 @@ using System.Web.Mvc;
 
 namespace Shop.Areas.admin.Controllers
 {
-    public class ProductController : BaseController
+    public class CategoryController : BaseController
     {
-        // GET: Product
-        public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
+        // GET: admin/Category
+        public ActionResult Index(string searchString)
         {
-            var dao = new ProductDao();
-            var model = dao.ListAllPaging(searchString, page, pageSize);
+            var model = new ProductDao().GetListCate(searchString);
             return View(model);
         }
-        [HttpGet]
-
         public ActionResult Create()
         {
             return View();
         }
-
         public ActionResult Edit(int id)
         {
-            var user = new ProductDao().ViewDetail(id);
-            return View(user);
+            var model = new ProductDao().CateViewDetail(id);
+            return View(model);
         }
         [HttpPost]
 
-        public ActionResult Create(Product product)
+        public ActionResult Create(Category cate)
         {
-            //ViewBag.Category=new SelectList(new ProductDao().GetAllCate().Where(x=>x.CategoryID=myid))
-            ViewBag.Category = new ProductDao().GetAllCate().Select(x => new SelectListItem { Text = x.Name, Value = x.CategoryID.ToString() }).ToList();
-           // ViewBag.Category = new SelectList(new ProductDao().GetAllCate().ToList(), "ID", "Name");
             if (ModelState.IsValid)
             {
                 var dao = new ProductDao();
 
-                long id = dao.Insert(product);
+                long id = dao.InsertCate(cate);
                 if (id > 0)
                 {
                     SetAlert("Thêm user thành công", "success");
@@ -56,12 +48,12 @@ namespace Shop.Areas.admin.Controllers
         }
         [HttpPost]
 
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(Category cate)
         {
             if (ModelState.IsValid)
             {
                 var dao = new ProductDao();
-                var result = dao.Update(product);
+                var result = dao.UpdateCate(cate);
                 if (result)
                 {
                     SetAlert("Sửa user thành công", "success");
@@ -78,10 +70,9 @@ namespace Shop.Areas.admin.Controllers
 
         public ActionResult Delete(int id)
         {
-            new ProductDao().Delete(id);
+            new ProductDao().DeleteCate(id);
 
             return RedirectToAction("Index");
         }
-
     }
 }

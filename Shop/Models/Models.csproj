@@ -61,9 +61,8 @@
     <Compile Include="DAO\OrderDao.cs" />
     <Compile Include="DAO\OrderDetailDao.cs" />
     <Compile Include="DAO\ProductDao.cs" />
+    <Compile Include="DAO\ReportDao.cs" />
     <Compile Include="DAO\UserDao.cs" />
-    <Compile Include="Model\Cart.cs" />
-    <Compile Include="Model\CartProduct.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\ModelDbContext.cs" />
     <Compile Include="Model\Order.cs" />
@@ -75,8 +74,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CartViewModel.cs" />
     <Compile Include="ViewModel\CategoryViewModel.cs" />
+    <Compile Include="ViewModel\OrderViewModel.cs" />
     <Compile Include="ViewModel\ProductFilter.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
+    <Compile Include="ViewModel\ReportViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -85,5 +86,6 @@
   <ItemGroup>
     <Content Include="Content\PagedList.css" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,22 +1,18 @@
-﻿@model PagedList.IPagedList<Models.Model.User>
+﻿@model PagedList.IPagedList<Models.ViewModel.OrderViewModel>
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
 }
 
-@section jsFooter{
-    <script src="~/assets/admin/js/User.js"></script>
-    
-}
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid">
-            <h1 class="mt-4">Danh sách tài khoản</h1>
+            <h1 class="mt-4">Danh sách đơn hàng</h1>
             <div class="card mb-4">
 
                 <div class="card-body">
-                    @using (Html.BeginForm("Index", "User", FormMethod.Get))
+                    @using (Html.BeginForm("Index", "Order", FormMethod.Get))
                     {
                         <div class="row ">
                             <div class="col-md-8">
@@ -26,11 +22,11 @@
 
                             <div class="col-md-4">
                                 <button type="submit" class="btn btn-success">Tìm kiếm</button>
-                                <a href="/Product/Create" class="btn btn-primary">Thêm mới</a>
+                                <a href="/admin/Order/Create" class="btn btn-primary">Thêm mới</a>
                             </div>
                         </div>
+
                     }
-                       
                     <hr />
                     <div class="table-responsive">
 
@@ -38,11 +34,15 @@
                             <thead>
                                 <tr>
 
-                                    <th>Tài khoản</th>
-                                    <th>Mật khẩu</th>
-                                    <th>Email</th>
-                                    <th>Quyền</th>
+                                    <th>ID</th>
+                                    <th>UserID</th>
+                                    <th>Total</th>
+                                    <th>ShipName</th>
+                                    <th>ShipAddress</th>
+                                    <th>ShipEmail</th>
+                                    <th>ShipPhone</th>
                                     <th>Status</th>
+                                    <th>CreateDate</th>
                                     <th>#</th>
 
                                 </tr>
@@ -50,24 +50,28 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr id="row_@item.ID">
+                                <tr id="row_@item.ID">
 
-                                        <td>@item.UserName</td>
-                                        <td>@item.Password</td>
-                                        <td>@item.Email</td>
-                                        <td>@item.Role</td>
-                                        <td><a href="#" class=" btn-active" data-id="@item.ID">@(item.Status ? "Kích hoạt" : "Khóa")</a></td>
-                                        <td>
-                                            <a href="/admin/User/Edit/@item.ID">Sửa</a>
-                                            @Ajax.ActionLink("Xóa", "Delete",new {@id=item.ID }, new AjaxOptions
-                                       {
-                                           Confirm = "Bản có muốn xóa bản ghi này ?",
-                                           OnComplete = "$('#row_" + @item.ID + "').remove()",
-                                           HttpMethod = "Delete"
-                                       })
-                                        </td>
+                                    <td><a href="/admin/Order/Detail/@item.ID">@item.ID</a></td>
+                                    <td>@item.UserID</td>
+                                    <td>@item.Total</td>
+                                    <td>@item.ShipName</td>
+                                    <td>@item.ShipAddress</td>
+                                    <td>@item.ShipEmail</td>
+                                    <td>@item.ShipPhone</td>
+                                    <td>@item.Status</td>
+                                    <td>@item.CreateDate</td>
+                                    <td>
+                                        <a href="/admin/Order/Edit/@item.ID">Sửa</a>
+                                        @Ajax.ActionLink("Xóa", "Delete",new {@id=item.ID }, new AjaxOptions
+                                   {
+                                       Confirm = "Bản có muốn xóa bản ghi này ?",
+                                       OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                       HttpMethod = "Delete"
+                                   })
+                                    </td>
 
-                                    </tr>
+                                </tr>
                                 }
                             </tbody>
                         </table>

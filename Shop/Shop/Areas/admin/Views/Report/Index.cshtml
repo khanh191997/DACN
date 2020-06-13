@@ -1,0 +1,98 @@
+﻿@model List<Models.ViewModel.ReportViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
+}
+
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <h1 class="mt-4">Report</h1>
+            <div class="card mb-4">
+                
+                <a href="@Html.ActionLink("Export", "Export","Report")"></a>
+                <div class="card-body">
+                    @using (Html.BeginForm("Index", "Report", FormMethod.Get))
+                    {
+                        <div class="row ">
+                            <div class="col-md-8">
+                                <input type="text" value="@ViewBag.Date" name="date" size="90" />
+
+                            </div>
+                            <hr>
+
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-success">Chọn ngày</button>
+
+                            </div>
+                        </div>
+
+                    }
+                    <hr />
+                    <table class="table table-striped w-auto">
+
+                        <!--Table head-->
+                        <thead>
+                            <tr>
+
+                                <th>Code</th>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>CustomerName</th>
+                                <th>CustomerAddress</th>
+                                <th>CustomerEmail</th>
+                                <th>CreateDate</th>
+
+
+                            </tr>
+                        </thead>
+                        <!--Table head-->
+                        <!--Table body-->
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="row_@item.OrderID">
+
+                                    <td>@item.ProductCode</td>
+                                    <td>@item.ProductName</td>
+
+
+                                    <td>@item.Quantity</td>
+                                    <td>@item.Total</td>
+
+                                    <td>@item.CustomerName</td>
+                                    <td>@item.CustomerAddress</td>
+                                    <td>@item.CustomerEmail</td>
+                                    <td>@item.CreateDate</td>
+
+                                </tr>
+                            }
+                        </tbody>
+                        <!--Table body-->
+
+
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Your Website 2019</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    &middot;
+                    <a href="#">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+

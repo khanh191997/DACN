@@ -59,6 +59,7 @@ namespace Shop.Controllers
             var product = new ProductDao().ViewDetail(id);
             ProductViewModel model = new ProductViewModel()
             {
+                ID=product.ID,
                 Name=product.Name,
                 Code = product.Code,
                 Descriptions = product.Descriptions,

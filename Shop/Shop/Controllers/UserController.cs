@@ -44,6 +44,7 @@ namespace Shop.Controllers
                     userSession.UserName = user.UserName;
                     userSession.UserID = user.ID;
                     Session.Add(Constants.USER_SESSION, userSession);
+                    
                     return RedirectToAction("Index","Home");
                 }
                 else if (result == 0)

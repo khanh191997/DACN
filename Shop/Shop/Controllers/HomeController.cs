@@ -1,4 +1,6 @@
 ﻿using Models.DAO;
+using Models.ViewModel;
+using Shop.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +71,16 @@ namespace Shop.Controllers
         {
             var model = new ProductDao().ListTopSelling();
             return PartialView(model);
+        }
+        public ActionResult ViewCart()
+        {
+            var cart = Session[Constants.CartSession];
+            var list = new List<CartViewModel>();
+            if (cart != null)
+            {
+                list = (List<CartViewModel>)cart;
+            }
+            return PartialView(list);
         }
     }
 }

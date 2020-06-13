@@ -1,14 +1,9 @@
-﻿@model PagedList.IPagedList<Models.Model.User>
-@using PagedList.Mvc;
+﻿@model List<Models.Model.Category>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/admin/Views/Shared/_Layout.cshtml";
 }
 
-@section jsFooter{
-    <script src="~/assets/admin/js/User.js"></script>
-    
-}
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid">
@@ -16,7 +11,7 @@
             <div class="card mb-4">
 
                 <div class="card-body">
-                    @using (Html.BeginForm("Index", "User", FormMethod.Get))
+                    @using (Html.BeginForm("Index", "Category", FormMethod.Get))
                     {
                         <div class="row ">
                             <div class="col-md-8">
@@ -30,7 +25,7 @@
                             </div>
                         </div>
                     }
-                       
+
                     <hr />
                     <div class="table-responsive">
 
@@ -38,11 +33,9 @@
                             <thead>
                                 <tr>
 
-                                    <th>Tài khoản</th>
-                                    <th>Mật khẩu</th>
-                                    <th>Email</th>
-                                    <th>Quyền</th>
-                                    <th>Status</th>
+                                    <th>Code</th>
+                                    <th>Tên danh mục</th>
+                                    <th>Mô tả</th>
                                     <th>#</th>
 
                                 </tr>
@@ -52,11 +45,8 @@
                                 {
                                     <tr id="row_@item.ID">
 
-                                        <td>@item.UserName</td>
-                                        <td>@item.Password</td>
-                                        <td>@item.Email</td>
-                                        <td>@item.Role</td>
-                                        <td><a href="#" class=" btn-active" data-id="@item.ID">@(item.Status ? "Kích hoạt" : "Khóa")</a></td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Descriptions</td>
                                         <td>
                                             <a href="/admin/User/Edit/@item.ID">Sửa</a>
                                             @Ajax.ActionLink("Xóa", "Delete",new {@id=item.ID }, new AjaxOptions
@@ -71,7 +61,7 @@
                                 }
                             </tbody>
                         </table>
-                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))
+                       
                     </div>
                 </div>
             </div>

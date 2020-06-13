@@ -12,8 +12,6 @@ namespace Models.Model
         {
         }
 
-        public virtual DbSet<Cart> Carts { get; set; }
-        public virtual DbSet<CartProduct> CartProducts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
@@ -24,20 +22,6 @@ namespace Models.Model
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Cart>()
-                .HasMany(e => e.CartProducts)
-                .WithRequired(e => e.Cart)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Cart>()
-                .HasMany(e => e.Orders)
-                .WithRequired(e => e.Cart)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<CartProduct>()
-                .Property(e => e.Price)
-                .HasPrecision(18, 0);
-
             modelBuilder.Entity<Category>()
                 .HasMany(e => e.Products)
                 .WithRequired(e => e.Category)
@@ -57,11 +41,6 @@ namespace Models.Model
                 .HasPrecision(18, 0);
 
             modelBuilder.Entity<Product>()
-                .HasMany(e => e.CartProducts)
-                .WithRequired(e => e.Product)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Product>()
                 .HasMany(e => e.OrderDetails)
                 .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(false);
@@ -70,13 +49,8 @@ namespace Models.Model
                 .HasMany(e => e.Products)
                 .WithRequired(e => e.Supplier)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Carts)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
         }
 
-       
+        
     }
 }

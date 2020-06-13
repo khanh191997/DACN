@@ -10,7 +10,7 @@ namespace Models.ViewModel
     public class CategoryViewModel
     {
         [Key]
-        public int ID { get; set; }
+        public int CategoryID { get; set; }
         public string Name { get; set; }
         public string Descriptions { get; set; }
     }

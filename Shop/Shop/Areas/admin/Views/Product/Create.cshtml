@@ -11,12 +11,13 @@
     supplier.Add(new SelectListItem { Text = "Dell", Value = "6" });
     supplier.Add(new SelectListItem { Text = "HP", Value = "7" });
 
-    List<SelectListItem> category = new List<SelectListItem>();
-    category.Add(new SelectListItem { Text = "Laptop", Value = "1" });
-    category.Add(new SelectListItem { Text = "Smartphone", Value = "2" });
-    category.Add(new SelectListItem { Text = "Watch", Value = "3" });
-    category.Add(new SelectListItem { Text = "Accessories", Value = "4" });
-    category.Add(new SelectListItem { Text = "Camera", Value = "5" });
+
+    List<SelectListItem> category = ViewBag.Category;
+    //category.Add(new SelectListItem { Text = "Laptop", Value = "1" });
+    //category.Add(new SelectListItem { Text = "Smartphone", Value = "2" });
+    //category.Add(new SelectListItem { Text = "Watch", Value = "3" });
+    //category.Add(new SelectListItem { Text = "Accessories", Value = "4" });
+    //category.Add(new SelectListItem { Text = "Camera", Value = "5" });
 }
 
 <div id="layoutSidenav_content">

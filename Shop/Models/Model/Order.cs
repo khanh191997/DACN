@@ -16,8 +16,6 @@ namespace Models.Model
 
         public int ID { get; set; }
 
-        public int CartID { get; set; }
-
         [StringLength(50)]
         public string ShipName { get; set; }
 
@@ -31,10 +29,15 @@ namespace Models.Model
         public string ShipEmail { get; set; }
 
         public bool? Status { get; set; }
+        public decimal? Total { get; set; }
 
-        public virtual Cart Cart { get; set; }
+        public int? UserID { get; set; }
+
+        public DateTime? CreateDate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

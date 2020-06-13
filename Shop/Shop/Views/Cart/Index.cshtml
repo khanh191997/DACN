@@ -19,21 +19,29 @@
                         <td>Đơn giá</td>
                         <td>Thành tiền</td>
                         <td></td>
+
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
+
                         <tr>
                             <td>@item.product.Code</td>
                             <td>@item.product.Name</td>
-                            <td><img src="@item.product.Image" height="200px" width="220px" /></td>
+                            <td><img src="@item.product.Image" height="32px" width="32px" /></td>
                             <td><input type="text" class="txtQuantity" data-id="@item.product.ID" value="@item.Quantity" /></td>
-                            <td>@item.product.Price.GetValueOrDefault(0)</td>
-                            <td>@(item.product.Price.GetValueOrDefault(0) * item.Quantity)</td>
+                            <td>$@item.product.Price.GetValueOrDefault(0).ToString("#,##")</td>
+                            <td>$@((item.product.Price.GetValueOrDefault(0) * item.Quantity)?.ToString("#,##"))</td>
                             <td><a href="#" data-id="@item.product.ID" id="btn-delete">Xóa</a></td>
+
                         </tr>
                     }
+                    <tr>
+                        <td></td>
+                        <td colspan="4">Total</td>
+                        <td>$@(Model.Sum(x => x.product.Price*x.Quantity)?.ToString("#,##"))</td>
+                    </tr>
 
                 </tbody>
             </table>

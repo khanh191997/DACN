@@ -8,12 +8,152 @@
     <meta name="author" content="" />
     <title>Quản lý Cửa hàng</title>
     <link href="~/assets/admin/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet prefetch" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#datepicker").datepicker({
+                autoclose: true,
+                todayHighlight: true
+            }).datepicker('update', new Date());
+        });
+    </script>
+   
+    <script>
+
+window.onload = function () {
+
+var totalVisitors = 883000;
+var visitorsData = {
+	"New vs Returning Visitors": [{
+		click: visitorsChartDrilldownHandler,
+		cursor: "pointer",
+		explodeOnClick: false,
+		innerRadius: "75%",
+		legendMarkerType: "square",
+		name: "New vs Returning Visitors",
+		radius: "100%",
+		showInLegend: true,
+		startAngle: 90,
+		type: "doughnut",
+		dataPoints: @Html.Raw(ViewBag.NewVsReturningVisitors)
+	}],
+	"New Visitors": [{
+		color: "#E7823A",
+		name: "New Visitors",
+		type: "column",
+		xValueType: "dateTime",
+		dataPoints:  @Html.Raw(ViewBag.NewVisitors)
+	}],
+	"Returning Visitors": [{
+		color: "#546BC1",
+		name: "Returning Visitors",
+		type: "column",
+		xValueType: "dateTime",
+		dataPoints:  @Html.Raw(ViewBag.ReturningVisitors)
+	}]
+};
+
+var newVSReturningVisitorsOptions = {
+	animationEnabled: true,
+	theme: "light2",
+	title: {
+		text: "New VS Returning Visitors"
+	},
+	subtitles: [{
+		text: "Click on Any Segment to Drilldown",
+		backgroundColor: "#2eacd1",
+		fontSize: 16,
+		fontColor: "white",
+		padding: 5
+	}],
+	legend: {
+		fontFamily: "calibri",
+		fontSize: 14,
+		itemTextFormatter: function (e) {
+			return e.dataPoint.name + ": " + Math.round(e.dataPoint.y / totalVisitors * 100) + "%";
+		}
+	},
+	data: []
+};
+
+var visitorsDrilldownedChartOptions = {
+	animationEnabled: true,
+	theme: "light2",
+	axisX: {
+		labelFontColor: "#717171",
+		lineColor: "#a2a2a2",
+		tickColor: "#a2a2a2"
+	},
+	axisY: {
+		gridThickness: 0,
+		includeZero: false,
+		labelFontColor: "#717171",
+		lineColor: "#a2a2a2",
+		tickColor: "#a2a2a2",
+		lineThickness: 1
+	},
+	data: []
+};
+
+var chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
+chart.options.data = visitorsData["New vs Returning Visitors"];
+chart.render();
+
+function visitorsChartDrilldownHandler(e) {
+	chart = new CanvasJS.Chart("chartContainer", visitorsDrilldownedChartOptions);
+	chart.options.data = visitorsData[e.dataPoint.name];
+	chart.options.title = { text: e.dataPoint.name }
+	chart.render();
+	$("#backButton").toggleClass("invisible");
+}
+
+$("#backButton").click(function () {
+	$(this).toggleClass("invisible");
+	chart = new CanvasJS.Chart("chartContainer", newVSReturningVisitorsOptions);
+	chart.options.data = visitorsData["New vs Returning Visitors"];
+	chart.render();
+});
+
+}
+    </script>
+    <style>
+        #backButton {
+            border-radius: 4px;
+            padding: 8px;
+            border: none;
+            font-size: 16px;
+            background-color: #2eacd1;
+            color: white;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .invisible {
+            display: none;
+        }
+
+        label {
+            margin-left: 20px;
+        }
+
+        #datepicker {
+            width: 180px;
+            margin: 0 20px 20px 20px;
+        }
+
+            #datepicker > span:hover {
+                cursor: pointer;
+            }
+    </style>
 </head>
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.html">Start Bootstrap</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
+        <a class="navbar-brand" href="index.html">Dashboard</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
         </button><!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -51,7 +191,7 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="~/assets/admin/assets/demo/datatables-demo.js"></script>
-
-    @RenderSection("jsFooter", required: false)
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 </body>
 </html>

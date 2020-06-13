@@ -12,7 +12,6 @@ namespace Models.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            CartProducts = new HashSet<CartProduct>();
             OrderDetails = new HashSet<OrderDetail>();
         }
 
@@ -42,9 +41,6 @@ namespace Models.Model
         public int SupplierID { get; set; }
 
         public int CategoryID { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CartProduct> CartProducts { get; set; }
 
         public virtual Category Category { get; set; }
 

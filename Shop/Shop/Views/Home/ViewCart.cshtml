@@ -1,0 +1,38 @@
+﻿@model List<Models.ViewModel.CartViewModel>
+<div class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+        <i class="fa fa-shopping-cart"></i>
+        <span>Your Cart</span>
+        <div class="qty">@Model.Count</div>
+    </a>
+    <div class="cart-dropdown">
+        @if (Model.Count > 0)
+        {
+            <div class="cart-list">
+                @foreach (var item in Model)
+                {
+                    <div class="product-widget">
+                        <div class="product-img">
+                            <img src="@item.product.Image" alt="">
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-name"><a href="#">@item.product.Name</a></h3>
+                            <h4 class="product-price"><span class="qty">@item.Quantity</span>$@(item.product.Price.GetValueOrDefault(0) * item.Quantity)</h4>
+                        </div>
+                        <button class="delete"><i class="fa fa-close"></i></button>
+                    </div>
+                }
+
+            </div>
+        }
+
+        <div class="cart-summary">
+            <small>@Model.Count Item(s) selected</small>
+            <h5>Tổng : $@Model.Sum(x => x.product.Price * x.Quantity)</h5>
+        </div>
+        <div class="cart-btns">
+            <a href="/gio-hang">View Cart</a>
+            <a href="/thanh-toan">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+</div>

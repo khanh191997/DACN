@@ -94,5 +94,10 @@ namespace Shop.Areas.admin.Controllers
                 status = result
             });
         }
+        public ActionResult ExportToExcel()
+        {
+            Response.AddHeader("Content-Type", "application/vnd.ms-excel");
+            return PartialView("_Table");
+        }
     }
 }

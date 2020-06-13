@@ -114,12 +114,14 @@ namespace Shop.Controllers
         public ActionResult Payment(string shipName, string phone, string address, string email)
         {
             var order = new Order();
-           
+            var session = (UserLogin)Session[Constants.USER_SESSION];
             order.ShipAddress = address;
             order.ShipPhone = phone;
             order.ShipName = shipName;
             order.ShipEmail = email;
-
+            order.Status = false;
+            order.UserID = session.UserID;
+            order.CreateDate = DateTime.Now;
             try
             {
                 var id = new OrderDao().Insert(order);
@@ -133,9 +135,8 @@ namespace Shop.Controllers
                     orderDetail.Price = item.product.Price;
                     orderDetail.Quantity = item.Quantity;
                     detailDao.Insert(orderDetail);
-
-
-                }     
+                    order.Total += item.Price * item.Quantity;
+                }
             }
             catch
             {
